@@ -62,7 +62,7 @@ public class WsdlMojo extends AbstractMojo{
     @Parameter(property = "import-postfix-name", defaultValue = "")
     private String importPostfixName;
     
-    @Parameter(property = "wsdl-urls", defaultValue = "tipi")
+    @Parameter(property = "wsdl-urls")
     private List<String> wsdlUrls;
     
     @Override
