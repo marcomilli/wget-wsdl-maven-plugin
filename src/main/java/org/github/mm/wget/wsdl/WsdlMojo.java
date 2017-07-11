@@ -35,34 +35,34 @@ public class WsdlMojo extends AbstractMojo{
     /**
      * Name of root directory where file is downloaded
      */
-    @Parameter(property = "destination-directory", required = true)
+    @Parameter(required = true)
     private String destinationDirectory;
     
     /**
      * Name of root directory where file is downloaded
      */
-    @Parameter(property = "keep", defaultValue = "false")
+    @Parameter(defaultValue = "false")
     private boolean keep;
     
     /**
      * Create a sub directory for any wsdl file if it set 'true'
      */
-    @Parameter(property = "create-sub-dir", defaultValue = "false")
+    @Parameter(defaultValue = "false")
     private boolean createSubDir;
     
     /**
      * Set a prefix name to the import file in wsdl
      */
-    @Parameter(property = "import-prefix-name", defaultValue = "")
+    @Parameter(defaultValue = "")
     private String importPrefixName;
     
     /**
      * Set a postfix name to the import file in wsdl
      */
-    @Parameter(property = "import-postfix-name", defaultValue = "")
+    @Parameter(defaultValue = "")
     private String importPostfixName;
     
-    @Parameter(property = "wsdl-urls")
+    @Parameter
     private List<String> wsdlUrls;
     
     @Override
@@ -74,6 +74,7 @@ public class WsdlMojo extends AbstractMojo{
             fs.setDirectory(destinationDirectory);
             try {
                 fsm.delete(fs);
+                WsdlUtils.createDirectory(destinationDirectory);
             } catch (IOException ex) {
                 Logger.getLogger(WsdlMojo.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -124,7 +125,10 @@ public class WsdlMojo extends AbstractMojo{
 
             String location = e.getAttribute("location");
 
-          getLog().info("wsdl:import location=" + location );
+            getLog().info("wsdl:import location=" + location );
+            if(null == location || "".equals(location)){
+                continue;
+            }
 
             URI uri = WsdlUtils.resolveURI( url, location );    
             if( uri != null ) {  
@@ -132,10 +136,10 @@ public class WsdlMojo extends AbstractMojo{
                 final URL locationURL = uri.toURL();
 
                 String newLocation = WsdlUtils.addPrefix(fileName, importPrefixName);
-              newLocation = WsdlUtils.addPostfix(fileName, importPostfixName);
-              e.setAttribute("location", newLocation);
+                newLocation = WsdlUtils.addPostfix(fileName, importPostfixName);
+                e.setAttribute("location", newLocation);
 
-              download( locationURL, destination, newLocation);
+                download( locationURL, destination, newLocation);
             }
         }
         
@@ -143,92 +147,100 @@ public class WsdlMojo extends AbstractMojo{
 
         for( int i=0; i < xsdImport.getLength() ; ++i ) {
 
-          Element e = (Element) xsdImport.item(i);
+            Element e = (Element) xsdImport.item(i);
 
-          String location = e.getAttribute("schemaLocation");
+            String location = e.getAttribute("schemaLocation");
+            System.out.printf("xsd:import location=[%s]\n", location );
+            if(null == location){
+                continue;
+            }
 
-          System.out.printf("xsd:import location=[%s]\n", location );
+            URI uri = WsdlUtils.resolveURI( url, location );    
+            if( uri != null ) {  
+                final URL locationURL = uri.toURL();
 
-          URI uri = WsdlUtils.resolveURI( url, location );    
-          if( uri != null ) {  
+                String newLocation = WsdlUtils.addPrefix(fileName, importPrefixName);
+                newLocation = WsdlUtils.addPostfix(fileName, importPostfixName);
+                e.setAttribute("schemaLocation", newLocation);
 
-              final URL locationURL = uri.toURL();
-
-              String newLocation = WsdlUtils.addPrefix(fileName, importPrefixName);
-              newLocation = WsdlUtils.addPostfix(fileName, importPostfixName);
-              e.setAttribute("schemaLocation", newLocation);
-
-              download( locationURL, destination, newLocation);
-          }
+                download( locationURL, destination, newLocation);
+            }
         }
 
         final NodeList xsInclude = doc.getElementsByTagName("xs:include");
 
         for( int i=0; i < xsInclude.getLength() ; ++i ) {
 
-          Element e = (Element) xsInclude.item(i);
+            Element e = (Element) xsInclude.item(i);
 
-          String location = e.getAttribute("schemaLocation");
+            String location = e.getAttribute("schemaLocation");
+            getLog().info("xsd:include location=[%s] "+location );
+            if(null == location || "".equals(location)){
+                continue;
+            }
 
-          System.out.printf("xsd:include location=[%s]\n", location );
+            URI uri = WsdlUtils.resolveURI( url, location );    
+            if( uri != null ) {  
 
-          URI uri = WsdlUtils.resolveURI( url, location );    
-          if( uri != null ) {  
+                final URL locationURL = uri.toURL();
 
-              final URL locationURL = uri.toURL();
+                String newLocation = WsdlUtils.addPrefix(fileName, importPrefixName);
+                newLocation = WsdlUtils.addPostfix(fileName, importPostfixName);
+                e.setAttribute("schemaLocation", newLocation);
 
-              String newLocation = WsdlUtils.addPrefix(fileName, importPrefixName);
-              newLocation = WsdlUtils.addPostfix(fileName, importPostfixName);
-              e.setAttribute("schemaLocation", newLocation);
-
-              download( locationURL, destination, newLocation);
-          }
+                download( locationURL, destination, newLocation);
+            }
         }
 
         final NodeList xsImport = doc.getElementsByTagName("xs:import");
 
         for( int i=0; i < xsImport.getLength() ; ++i ) {
 
-          Element e = (Element) xsImport.item(i);
+            Element e = (Element) xsImport.item(i);
 
-          String location = e.getAttribute("schemaLocation");
+            String location = e.getAttribute("schemaLocation");
+            getLog().info("xs:import location=[%s] "+location );
+            if(null == location || "".equals(location)){
+                continue;
+            }
 
-          System.out.printf("xs:import location=[%s]\n", location );
+            URI uri = WsdlUtils.resolveURI( url, location );    
+            if( uri != null ) {  
 
-          URI uri = WsdlUtils.resolveURI( url, location );    
-          if( uri != null ) {  
+                final URL locationURL = uri.toURL();
 
-              final URL locationURL = uri.toURL();
+                String newLocation = WsdlUtils.addPrefix(fileName, importPrefixName);
+                newLocation = WsdlUtils.addPostfix(fileName, importPostfixName);
+                e.setAttribute("schemaLocation", newLocation);
 
-              String newLocation = WsdlUtils.addPrefix(fileName, importPrefixName);
-              newLocation = WsdlUtils.addPostfix(fileName, importPostfixName);
-              e.setAttribute("schemaLocation", newLocation);
-
-              download( locationURL, destination, newLocation);
-          }
+                download( locationURL, destination, newLocation);
+            }
         }
         
         final NodeList xsRedefine = doc.getElementsByTagName("xs:redefine");
 
         for( int i=0; i < xsRedefine.getLength() ; ++i ) {
 
-          Element e = (Element) xsRedefine.item(i);
+            Element e = (Element) xsRedefine.item(i);
 
-          String location = e.getAttribute("schemaLocation");
+            String location = e.getAttribute("schemaLocation");
 
-          System.out.printf("xs:redefine location=[%s]\n", location );
+            getLog().info("xs:redefine location=[%s] "+location );
+            if(null == location || "".equals(location)){
+                continue;
+            }
 
-          URI uri = WsdlUtils.resolveURI( url, location );    
-          if( uri != null ) {  
+            URI uri = WsdlUtils.resolveURI( url, location );    
+            if( uri != null ) {  
 
-              final URL locationURL = uri.toURL();
+                final URL locationURL = uri.toURL();
 
-              String newLocation = WsdlUtils.addPrefix(fileName, importPrefixName);
-              newLocation = WsdlUtils.addPostfix(fileName, importPostfixName);
-              e.setAttribute("schemaLocation", newLocation);
+                String newLocation = WsdlUtils.addPrefix(fileName, importPrefixName);
+                newLocation = WsdlUtils.addPostfix(fileName, importPostfixName);
+                e.setAttribute("schemaLocation", newLocation);
 
-              download( locationURL, destination, newLocation);
-          }
+                download( locationURL, destination, newLocation);
+            }
         }
         
         fileName = destination + File.separator + fileName;
