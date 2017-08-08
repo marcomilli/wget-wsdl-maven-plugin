@@ -1,7 +1,7 @@
 /*
  *
  */
-package org.github.mm.wget.wsdl;
+package io.github.marcomilli.wget.wsdl;
 
 import java.io.File;
 import java.io.IOException;
