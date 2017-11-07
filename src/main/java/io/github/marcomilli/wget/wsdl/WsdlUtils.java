@@ -65,7 +65,7 @@ public class WsdlUtils {
         boolean ret = false;
         Path realDest = Paths.get(path);
         try {
-            Files.createDirectory(realDest);
+            Files.createDirectories(realDest);
             ret = true;
         } catch (IOException ex) {
             Logger.getLogger(WsdlUtils.class.getName()).log(Level.SEVERE, null, ex);

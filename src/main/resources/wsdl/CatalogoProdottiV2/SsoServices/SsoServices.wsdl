@@ -1,0 +1,2375 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://business.soap.b2b.ssov4.sso.cabel.it/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SsoServices" targetNamespace="http://business.soap.b2b.ssov4.sso.cabel.it/">
+  <wsdl:types>
+<xs:schema xmlns:ns1="http://www.model.ssov4.sso.cabel.it/" xmlns:ns2="http://entities.log.cabel.it/" xmlns:ns3="http://business.soap.b2b.ssov4.sso.cabel.it/" xmlns:tns="http://www.pojo.business.soap.b2b.ssov4.sso.cabel.it/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.pojo.business.soap.b2b.ssov4.sso.cabel.it/">
+  <xs:import namespace="http://www.model.ssov4.sso.cabel.it/"/>
+  <xs:import namespace="http://entities.log.cabel.it/"/>
+  <xs:import namespace="http://business.soap.b2b.ssov4.sso.cabel.it/"/>
+  <xs:complexType name="eseguiAccessoResponsev14">
+    <xs:complexContent>
+      <xs:extension base="tns:eseguiAccessoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="installazione" type="ns1:installazione"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="eseguiAccessoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicazione" type="ns1:applicazione"/>
+      <xs:element minOccurs="0" name="organizzazione" type="ns1:organizzazione"/>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaSessioneRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="client" type="xs:string"/>
+      <xs:element minOccurs="0" name="ip" type="xs:string"/>
+      <xs:element minOccurs="0" name="login" type="xs:string"/>
+      <xs:element minOccurs="0" name="organizzazione" type="ns1:organizzazione"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+      <xs:element minOccurs="0" name="urlLogin" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaSessioneResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="assegnazione" nillable="true" type="ns1:assegnazione"/>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaSessione5250Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="userProfileCripted" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaAccessoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="url" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="caricaCtxResponsev16">
+    <xs:complexContent>
+      <xs:extension base="tns:caricaCtxResponsev14">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="entryPoint" type="tns:entryPoint"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="caricaCtxResponsev14">
+    <xs:complexContent>
+      <xs:extension base="tns:caricaCtxResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="parametriInstallazione" nillable="true" type="ns1:parametroInstallazione"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="parametriProfilo" nillable="true" type="ns1:parametroProfilo"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="parametriUtente" nillable="true" type="ns1:parametroUtente"/>
+          <xs:element minOccurs="0" name="sessione" type="tns:sessioneSSO"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="caricaCtxResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accessoSSO" type="ns3:accessoSSO"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applicazioni" nillable="true" type="ns1:installazione"/>
+      <xs:element minOccurs="0" name="assegnazione" type="ns1:assegnazione"/>
+      <xs:element minOccurs="0" name="canale" type="ns1:canale"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="funzionalita" nillable="true" type="ns1:funzionalita"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="parametri" nillable="true" type="ns1:parametro"/>
+      <xs:element minOccurs="0" name="profilo" type="ns1:profilo"/>
+      <xs:element minOccurs="0" name="utente" type="ns1:utente"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="entryPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="app" type="xs:string"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="parametri" nillable="true" type="tns:parametriEntryPoint"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="parametriEntryPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="chiave" type="xs:string"/>
+      <xs:element minOccurs="0" name="valore" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sessioneSSO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="app" type="xs:string"/>
+      <xs:element minOccurs="0" name="authority" type="xs:string"/>
+      <xs:element minOccurs="0" name="creazione" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaUPB2BResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="userProfileCripted" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cambioPasswordResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="expiration" type="xs:dateTime"/>
+      <xs:element name="granted" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="internalMessage" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastChange" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="publicMessage" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="bootstrapRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="authority" type="xs:string"/>
+      <xs:element minOccurs="0" name="client" type="xs:string"/>
+      <xs:element minOccurs="0" name="ip" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaUPMFResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="userProfileCripted" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:tns="http://www.model.ssov4.sso.cabel.it/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.model.ssov4.sso.cabel.it/" version="1.0">
+
+  <xs:element name="tipoCanale" type="tns:tipoCanale"/>
+
+  <xs:complexType name="installazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idApplicazione" type="tns:applicazione"/>
+      <xs:element minOccurs="0" name="idInstallazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idOrganizzazione" type="tns:organizzazione"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="parametroInstallaziones" nillable="true" type="tns:parametroInstallazione"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="applicazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idApplicazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idItem" type="tns:item"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="item">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="idItem" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="proprietaList" nillable="true" type="tns:proprieta"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="proprieta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idProprieta" type="xs:int"/>
+      <xs:element minOccurs="0" name="idTipoProprieta" type="tns:tipoProprieta"/>
+      <xs:element minOccurs="0" name="valore" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tipoProprieta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="idTipoProprieta" type="xs:int"/>
+      <xs:element minOccurs="0" name="tipo" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipoItem" type="tns:tipoItem"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tipoItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idTipoItem" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="organizzazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idBanca" type="tns:banca"/>
+      <xs:element minOccurs="0" name="idItem" type="tns:item"/>
+      <xs:element minOccurs="0" name="idOrganizzazione" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="banca">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="abiCapogruppo" type="xs:string"/>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceMito" type="xs:string"/>
+      <xs:element minOccurs="0" name="idBanca" type="xs:int"/>
+      <xs:element minOccurs="0" name="idItem" type="tns:item"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="parametroInstallazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="chiave" type="xs:string"/>
+      <xs:element minOccurs="0" name="idParametroInstallazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="installazione" type="tns:installazione"/>
+      <xs:element minOccurs="0" name="valore" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="assegnazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dataFine" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dataInizio" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="idAgenzia" type="tns:agenzia"/>
+      <xs:element minOccurs="0" name="idArea" type="tns:area"/>
+      <xs:element minOccurs="0" name="idAssegnazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idBanca" type="tns:banca"/>
+      <xs:element minOccurs="0" name="idFiliale" type="tns:filiale"/>
+      <xs:element minOccurs="0" name="idMacroArea" type="tns:macroArea"/>
+      <xs:element minOccurs="0" name="idRuolo" type="tns:ruolo"/>
+      <xs:element minOccurs="0" name="idUtente" type="tns:utente"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="agenzia">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idAgenzia" type="xs:int"/>
+      <xs:element minOccurs="0" name="idFiliale" type="tns:filiale"/>
+      <xs:element minOccurs="0" name="idItem" type="tns:item"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="filiale">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idArea" type="tns:area"/>
+      <xs:element minOccurs="0" name="idFiliale" type="xs:int"/>
+      <xs:element minOccurs="0" name="idItem" type="tns:item"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="area">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idArea" type="xs:int"/>
+      <xs:element minOccurs="0" name="idItem" type="tns:item"/>
+      <xs:element minOccurs="0" name="idMacroArea" type="tns:macroArea"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="macroArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idBanca" type="tns:banca"/>
+      <xs:element minOccurs="0" name="idItem" type="tns:item"/>
+      <xs:element minOccurs="0" name="idMacroArea" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ruolo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idItem" type="tns:item"/>
+      <xs:element minOccurs="0" name="idOrganizzazione" type="tns:organizzazione"/>
+      <xs:element minOccurs="0" name="idRuolo" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="utente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idItem" type="tns:item"/>
+      <xs:element minOccurs="0" name="idOrganizzazione" type="tns:organizzazione"/>
+      <xs:element minOccurs="0" name="idUtente" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="parametroUtentes" nillable="true" type="tns:parametroUtente"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="parametroUtente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="chiave" type="xs:string"/>
+      <xs:element minOccurs="0" name="idParametroUtente" type="xs:int"/>
+      <xs:element minOccurs="0" name="utente" type="tns:utente"/>
+      <xs:element minOccurs="0" name="valore" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="parametroProfilo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="chiave" type="xs:string"/>
+      <xs:element minOccurs="0" name="idParametroProfilo" type="xs:int"/>
+      <xs:element minOccurs="0" name="profilo" type="tns:profilo"/>
+      <xs:element minOccurs="0" name="valore" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="profilo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idInstallazione" type="tns:installazione"/>
+      <xs:element minOccurs="0" name="idItem" type="tns:item"/>
+      <xs:element minOccurs="0" name="idProfilo" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="canale">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idCanale" type="xs:int"/>
+      <xs:element minOccurs="0" name="idOrganizzazione" type="tns:organizzazione"/>
+      <xs:element minOccurs="0" name="idTipoCanale" type="tns:tipoCanale"/>
+      <xs:element minOccurs="0" name="indirizzo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tipoCanale">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="idTipoCanale" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="funzionalita">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idApplicazione" type="tns:applicazione"/>
+      <xs:element minOccurs="0" name="idFunzionalita" type="xs:int"/>
+      <xs:element minOccurs="0" name="idItem" type="tns:item"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="parametro">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idDefinizioneParametro" type="tns:definizioneParametro"/>
+      <xs:element minOccurs="0" name="idParametro" type="xs:int"/>
+      <xs:element minOccurs="0" name="idProfilo" type="tns:profilo"/>
+      <xs:element minOccurs="0" name="valore" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="definizioneParametro">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="choiceList" nillable="true" type="tns:choice"/>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idDefinizioneParametro" type="xs:int"/>
+      <xs:element minOccurs="0" name="idFunzionalita" type="tns:funzionalita"/>
+      <xs:element minOccurs="0" name="tipo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="choice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codice" type="xs:string"/>
+      <xs:element minOccurs="0" name="idChoice" type="xs:int"/>
+      <xs:element minOccurs="0" name="idDefinizioneParametro" type="tns:definizioneParametro"/>
+      <xs:element minOccurs="0" name="valore" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:tns="http://ws.sso.cabel.it/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ws.sso.cabel.it/" version="1.0">
+
+  <xs:element name="accessoSso" type="tns:accessoSso"/>
+
+  <xs:element name="accessoSsoResponse" type="tns:accessoSsoResponse"/>
+
+  <xs:element name="bootstrap" type="tns:bootstrap"/>
+
+  <xs:element name="bootstrapResponse" type="tns:bootstrapResponse"/>
+
+  <xs:element name="cambiaPassword" type="tns:cambiaPassword"/>
+
+  <xs:element name="cambiaPasswordResponse" type="tns:cambiaPasswordResponse"/>
+
+  <xs:element name="chiudiSessione" type="tns:chiudiSessione"/>
+
+  <xs:element name="chiudiSessioneResponse" type="tns:chiudiSessioneResponse"/>
+
+  <xs:element name="creaSessione" type="tns:creaSessione"/>
+
+  <xs:element name="creaSessioneResponse" type="tns:creaSessioneResponse"/>
+
+  <xs:element name="verificaSessione" type="tns:verificaSessione"/>
+
+  <xs:element name="verificaSessioneResponse" type="tns:verificaSessioneResponse"/>
+
+  <xs:complexType name="applicazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datiApplicazione" type="tns:datiApplicazione"/>
+      <xs:element minOccurs="0" name="datiIstallazione" type="tns:datiIstallazione"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="datiParametri" nillable="true" type="tns:datiParametro"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datiApplicazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="idapplicazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datiIstallazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idapplicazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idistallazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idorganizzazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="linkavvio" type="xs:string"/>
+      <xs:element minOccurs="0" name="linklogo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datiParametro">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idfunzione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idistallazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idparametro" type="xs:int"/>
+      <xs:element minOccurs="0" name="idruolo" type="xs:int"/>
+      <xs:element minOccurs="0" name="idutente" type="xs:int"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+      <xs:element minOccurs="0" name="valore" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creaSessione">
+    <xs:sequence>
+      <xs:element name="idOrganizzazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="profilo" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+      <xs:element minOccurs="0" name="ip" type="xs:string"/>
+      <xs:element minOccurs="0" name="client" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="verificaSessioneResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:risultatoVerificaSessione"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="risultatoVerificaSessione">
+    <xs:complexContent>
+      <xs:extension base="tns:risultato">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="datiSessione" type="tns:datiSessione"/>
+          <xs:element minOccurs="0" name="datiUtente" type="tns:datiUtente"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="risultato">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="eccezione" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="errore" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="noaut" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="nota" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datiSessione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="aggiornamento" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="client" type="xs:string"/>
+      <xs:element minOccurs="0" name="creazione" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="idsessione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idutente" type="xs:int"/>
+      <xs:element minOccurs="0" name="ip" type="xs:string"/>
+      <xs:element minOccurs="0" name="scadenza" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datiUtente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cognome" type="xs:string"/>
+      <xs:element minOccurs="0" name="idorganizzazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idruolo" type="xs:int"/>
+      <xs:element minOccurs="0" name="idutente" type="xs:int"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+      <xs:element minOccurs="0" name="profilo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="risultatoCreaSessione">
+    <xs:complexContent>
+      <xs:extension base="tns:risultato">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="sessione" type="tns:sessione"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="sessione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datiSessione" type="tns:datiSessione"/>
+      <xs:element minOccurs="0" name="utente" type="tns:utente"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="utente">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="applicazioni" nillable="true" type="tns:applicazione"/>
+      <xs:element minOccurs="0" name="datiEmail" type="tns:datiEmail"/>
+      <xs:element minOccurs="0" name="datiRuolo" type="tns:datiRuolo"/>
+      <xs:element minOccurs="0" name="datiTelefono" type="tns:datiTelefono"/>
+      <xs:element minOccurs="0" name="datiUtente" type="tns:datiUtente"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="messaggi" nillable="true" type="tns:datiMessaggio"/>
+      <xs:element minOccurs="0" name="organizzazione" type="tns:organizzazione"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="parametri" nillable="true" type="tns:datiParametro"/>
+      <xs:element minOccurs="0" name="passwordExpireDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="passwordLastChangedDate" type="xs:dateTime"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="sessioniPrecedenti" nillable="true" type="tns:datiSessione"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datiEmail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="creazione" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="disattivazione" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="idemail" type="xs:int"/>
+      <xs:element minOccurs="0" name="idutente" type="xs:int"/>
+      <xs:element minOccurs="0" name="indirizzo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datiRuolo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="idorganizzazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idruolo" type="xs:int"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datiTelefono">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="creazione" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="disattivazione" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="idtelefono" type="xs:int"/>
+      <xs:element minOccurs="0" name="idutente" type="xs:int"/>
+      <xs:element minOccurs="0" name="numero" type="xs:string"/>
+      <xs:element minOccurs="0" name="prefissointernazionale" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datiMessaggio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="attivo" type="xs:short"/>
+      <xs:element minOccurs="0" name="corpo" type="xs:string"/>
+      <xs:element minOccurs="0" name="fine" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="idmessaggio" type="xs:int"/>
+      <xs:element minOccurs="0" name="idruolo" type="xs:int"/>
+      <xs:element minOccurs="0" name="idutente" type="xs:int"/>
+      <xs:element minOccurs="0" name="inizio" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="titolo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="organizzazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="datiBanca" type="tns:datiBanca"/>
+      <xs:element minOccurs="0" name="datiOrganizzazione" type="tns:datiOrganizzazione"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datiBanca">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="abi" type="xs:string"/>
+      <xs:element minOccurs="0" name="codicemito" type="xs:string"/>
+      <xs:element minOccurs="0" name="descrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="idbanca" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datiOrganizzazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descrizione" type="xs:string"/>
+      <xs:element minOccurs="0" name="idbanca" type="xs:int"/>
+      <xs:element minOccurs="0" name="idorganizzazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="nome" type="xs:string"/>
+      <xs:element minOccurs="0" name="style" type="xs:string"/>
+      <xs:element minOccurs="0" name="url" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="risultatoBootstrap">
+    <xs:complexContent>
+      <xs:extension base="tns:risultato">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descrizione" type="xs:string"/>
+          <xs:element name="idOrganizzazione" type="xs:int"/>
+          <xs:element minOccurs="0" name="nome" type="xs:string"/>
+          <xs:element minOccurs="0" name="style" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="risultatoAccessoSso">
+    <xs:complexContent>
+      <xs:extension base="tns:risultato">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="accessKey" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="cambiaPassword">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="vecchiaPassword" type="xs:string"/>
+      <xs:element minOccurs="0" name="nuovaPassword" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bootstrap">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="url" type="xs:string"/>
+      <xs:element minOccurs="0" name="ip" type="xs:string"/>
+      <xs:element minOccurs="0" name="client" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="accessoSso">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element name="idApplicazione" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bootstrapResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:risultatoBootstrap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="accessoSsoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:risultatoAccessoSso"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="chiudiSessioneResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:risultato"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="chiudiSessione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cambiaPasswordResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:risultato"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="creaSessioneResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:risultatoCreaSessione"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="verificaSessione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns="http://pojo.supporto.b2b.ssov4.sso.cabel.it/" xmlns:ns1="http://entities.log.cabel.it/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://pojo.supporto.b2b.ssov4.sso.cabel.it/">
+  <xs:import namespace="http://entities.log.cabel.it/"/>
+  <xs:complexType name="validateUPResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns1:userProfile"/>
+      <xs:element minOccurs="0" name="userProfileCripted" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://entities.log.cabel.it/" version="1.0">
+
+  <xs:complexType name="userProfile">
+    <xs:sequence>
+      <xs:element name="utente" type="xs:string"/>
+      <xs:element name="ruolo" type="xs:string"/>
+      <xs:element minOccurs="0" name="capoGr" type="xs:string"/>
+      <xs:element name="banca" type="xs:string"/>
+      <xs:element minOccurs="0" name="macroArea" type="xs:string"/>
+      <xs:element minOccurs="0" name="area" type="xs:string"/>
+      <xs:element minOccurs="0" name="fil" type="xs:string"/>
+      <xs:element minOccurs="0" name="age" type="xs:string"/>
+      <xs:element minOccurs="0" name="unita" type="xs:string"/>
+      <xs:element minOccurs="0" name="corrId" type="xs:string"/>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="convId" type="xs:string"/>
+      <xs:element minOccurs="0" name="bsnsKey" type="xs:string"/>
+      <xs:element minOccurs="0" name="accessKey" type="xs:string"/>
+      <xs:element name="profilo" type="xs:string"/>
+      <xs:element minOccurs="0" name="app" type="xs:string"/>
+      <xs:element minOccurs="0" name="org" type="xs:string"/>
+      <xs:element minOccurs="0" name="canale" type="xs:string"/>
+      <xs:element minOccurs="0" name="modulo" type="xs:string"/>
+      <xs:element minOccurs="0" name="api" type="xs:string"/>
+      <xs:element minOccurs="0" name="funzione" type="xs:string"/>
+      <xs:element minOccurs="0" name="verbo" type="xs:string"/>
+      <xs:element minOccurs="0" name="servizio" type="xs:string"/>
+      <xs:element minOccurs="0" name="catalogo" type="xs:string"/>
+      <xs:element minOccurs="0" name="operazione" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:ns1="http://www.pojo.business.soap.b2b.ssov4.sso.cabel.it/" xmlns:ns2="http://entities.log.cabel.it/" xmlns:ns3="http://pojo.supporto.b2b.ssov4.sso.cabel.it/" xmlns:ns4="http://www.model.ssov4.sso.cabel.it/" xmlns:ns5="http://ws.sso.cabel.it/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://business.soap.b2b.ssov4.sso.cabel.it/">
+  <xs:import namespace="http://www.pojo.business.soap.b2b.ssov4.sso.cabel.it/"/>
+  <xs:import namespace="http://entities.log.cabel.it/"/>
+  <xs:import namespace="http://pojo.supporto.b2b.ssov4.sso.cabel.it/"/>
+  <xs:import namespace="http://www.model.ssov4.sso.cabel.it/"/>
+  <xs:import namespace="http://ws.sso.cabel.it/"/>
+  <xs:element name="avviaSessione" type="tns:avviaSessione"/>
+  <xs:element name="avviaSessioneResponse" type="tns:avviaSessioneResponse"/>
+  <xs:element name="bootstrap" type="tns:bootstrap"/>
+  <xs:element name="bootstrapResponse" type="tns:bootstrapResponse"/>
+  <xs:element name="cacheManager" type="tns:cacheManager"/>
+  <xs:element name="cacheManagerResponse" type="tns:cacheManagerResponse"/>
+  <xs:element name="calcolaCtx" type="tns:calcolaCtx"/>
+  <xs:element name="calcolaCtxResponse" type="tns:calcolaCtxResponse"/>
+  <xs:element name="cambiaPassword" type="tns:cambiaPassword"/>
+  <xs:element name="cambiaPasswordResponse" type="tns:cambiaPasswordResponse"/>
+  <xs:element name="caricaApplicazioniV1" type="tns:caricaApplicazioniV1"/>
+  <xs:element name="caricaApplicazioniV1Response" type="tns:caricaApplicazioniV1Response"/>
+  <xs:element name="caricaCtx" type="tns:caricaCtx"/>
+  <xs:element name="caricaCtxResponse" type="tns:caricaCtxResponse"/>
+  <xs:element name="caricaCtxv14" type="tns:caricaCtxv14"/>
+  <xs:element name="caricaCtxv14Response" type="tns:caricaCtxv14Response"/>
+  <xs:element name="caricaCtxv16" type="tns:caricaCtxv16"/>
+  <xs:element name="caricaCtxv16Response" type="tns:caricaCtxv16Response"/>
+  <xs:element name="caricaOrganizzazione" type="tns:caricaOrganizzazione"/>
+  <xs:element name="caricaOrganizzazioneResponse" type="tns:caricaOrganizzazioneResponse"/>
+  <xs:element name="chiudiMultiSessione" type="tns:chiudiMultiSessione"/>
+  <xs:element name="chiudiMultiSessioneResponse" type="tns:chiudiMultiSessioneResponse"/>
+  <xs:element name="chiudiSessione" type="tns:chiudiSessione"/>
+  <xs:element name="chiudiSessioneResponse" type="tns:chiudiSessioneResponse"/>
+  <xs:element name="controllaValiditaSessione" type="tns:controllaValiditaSessione"/>
+  <xs:element name="controllaValiditaSessioneResponse" type="tns:controllaValiditaSessioneResponse"/>
+  <xs:element name="creaAccesso" type="tns:creaAccesso"/>
+  <xs:element name="creaAccessoResponse" type="tns:creaAccessoResponse"/>
+  <xs:element name="creaAccessoV1" type="tns:creaAccessoV1"/>
+  <xs:element name="creaAccessoV1Response" type="tns:creaAccessoV1Response"/>
+  <xs:element name="creaEntryPoint" type="tns:creaEntryPoint"/>
+  <xs:element name="creaEntryPointResponse" type="tns:creaEntryPointResponse"/>
+  <xs:element name="creaSessione" type="tns:creaSessione"/>
+  <xs:element name="creaSessione5250" type="tns:creaSessione5250"/>
+  <xs:element name="creaSessione5250Response" type="tns:creaSessione5250Response"/>
+  <xs:element name="creaSessioneFiltrata" type="tns:creaSessioneFiltrata"/>
+  <xs:element name="creaSessioneFiltrataResponse" type="tns:creaSessioneFiltrataResponse"/>
+  <xs:element name="creaSessioneResponse" type="tns:creaSessioneResponse"/>
+  <xs:element name="decryptUP" type="tns:decryptUP"/>
+  <xs:element name="decryptUPResponse" type="tns:decryptUPResponse"/>
+  <xs:element name="encryptUP" type="tns:encryptUP"/>
+  <xs:element name="encryptUPResponse" type="tns:encryptUPResponse"/>
+  <xs:element name="eseguiAccesso" type="tns:eseguiAccesso"/>
+  <xs:element name="eseguiAccessoResponse" type="tns:eseguiAccessoResponse"/>
+  <xs:element name="eseguiAccessov14" type="tns:eseguiAccessov14"/>
+  <xs:element name="eseguiAccessov14Response" type="tns:eseguiAccessov14Response"/>
+  <xs:element name="exeCallout" type="tns:exeCallout"/>
+  <xs:element name="exeCalloutResponse" type="tns:exeCalloutResponse"/>
+  <xs:element name="generaUPB2B" type="tns:generaUPB2B"/>
+  <xs:element name="generaUPB2BResponse" type="tns:generaUPB2BResponse"/>
+  <xs:element name="generaUPMF" type="tns:generaUPMF"/>
+  <xs:element name="generaUPMFResponse" type="tns:generaUPMFResponse"/>
+  <xs:element name="isMultiSessione" type="tns:isMultiSessione"/>
+  <xs:element name="isMultiSessioneResponse" type="tns:isMultiSessioneResponse"/>
+  <xs:element name="validateUP" type="tns:validateUP"/>
+  <xs:element name="validateUPResponse" type="tns:validateUPResponse"/>
+  <xs:complexType name="eseguiAccessov14">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accessKey" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eseguiAccessov14Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:eseguiAccessoResponsev14"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="isMultiSessione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="creaSessioneRequest" type="ns1:creaSessioneRequest"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="isMultiSessioneResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="chiudiSessione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="chiudiSessioneResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaSessioneFiltrata">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="creaSessioneRequest" type="ns1:creaSessioneRequest"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaSessioneFiltrataResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:creaSessioneResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaSessione5250">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codiceUtente" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceOrganizzazione" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaSessione5250Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:creaSessione5250Response"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validateUP">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfileCripted" type="xs:string"/>
+      <xs:element minOccurs="0" name="userID" type="xs:string"/>
+      <xs:element minOccurs="0" name="modulo" type="xs:string"/>
+      <xs:element minOccurs="0" name="api" type="xs:string"/>
+      <xs:element minOccurs="0" name="funzione" type="xs:string"/>
+      <xs:element minOccurs="0" name="verbo" type="xs:string"/>
+      <xs:element minOccurs="0" name="servizio" type="xs:string"/>
+      <xs:element minOccurs="0" name="catalogo" type="xs:string"/>
+      <xs:element minOccurs="0" name="operation" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validateUPResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:validateUPResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="caricaOrganizzazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="organizzazione" type="ns4:organizzazione"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="caricaOrganizzazioneResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns4:organizzazione"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaAccessoV1">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="applicazione" type="ns5:applicazione"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaAccessoV1Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:creaAccessoResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cacheManager">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="codiceCache" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cacheManagerResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="caricaCtxv16">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="caricaCtxv16Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:caricaCtxResponsev16"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="accessoSSO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="creazione" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="idApplicazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idInstallazione" type="xs:int"/>
+      <xs:element minOccurs="0" name="idProfilo" type="xs:int"/>
+      <xs:element minOccurs="0" name="key" type="xs:string"/>
+      <xs:element minOccurs="0" name="tipoCanale" type="xs:string"/>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element name="utilizzato" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="controllaValiditaSessione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessione" type="tns:sessioneSSO"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sessioneSSO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="aggiornamento" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="assegnazione" type="ns4:assegnazione"/>
+      <xs:element minOccurs="0" name="bsnsKey" type="xs:string"/>
+      <xs:element minOccurs="0" name="client" type="xs:string"/>
+      <xs:element minOccurs="0" name="creazione" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="firstAK" type="xs:string"/>
+      <xs:element minOccurs="0" name="idSessioneSSO" type="xs:int"/>
+      <xs:element minOccurs="0" name="idUtente" type="ns4:utente"/>
+      <xs:element minOccurs="0" name="ip" type="xs:string"/>
+      <xs:element minOccurs="0" name="scadenza" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="timeout" type="xs:int"/>
+      <xs:element minOccurs="0" name="token" type="xs:string"/>
+      <xs:element minOccurs="0" name="urlLogin" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="controllaValiditaSessioneResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="avviaSessione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="assegnazione" type="ns4:assegnazione"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="avviaSessioneResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns2:userProfile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="caricaCtxv14">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="caricaCtxv14Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:caricaCtxResponsev14"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaEntryPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="entryPoint" type="ns1:entryPoint"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaEntryPointResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:creaAccessoResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="chiudiMultiSessione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="creaSessioneRequest" type="ns1:creaSessioneRequest"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="chiudiMultiSessioneResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="generaUPB2B">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="codiceUtente" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceRuolo" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceOrganizzazione" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceApplicazione" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceMacroArea" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceArea" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceFiliale" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceAgenzia" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceModulo" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceApi" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceFunzione" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceVerbo" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceTipoCanale" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaUPB2BResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:generaUPB2BResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="exeCallout">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="exeCalloutResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="creaSessione">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="creaSessioneRequest" type="ns1:creaSessioneRequest"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaSessioneResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:creaSessioneResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="decryptUP">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfileEncripted" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="decryptUPResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns2:userProfile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="caricaApplicazioniV1">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="caricaApplicazioniV1Response">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns5:applicazione"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cambiaPassword">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="vecchiaPassword" type="xs:string"/>
+      <xs:element minOccurs="0" name="nuovaPassword" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cambiaPasswordResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:cambioPasswordResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="bootstrap">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BootstrapRequest" type="ns1:bootstrapRequest"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="bootstrapResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:organizzazione"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="caricaCtx">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="caricaCtxResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:caricaCtxResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaAccesso">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="installazione" type="ns4:installazione"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="creaAccessoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:creaAccessoResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaUPMF">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="codiceUtente" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceRuolo" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceOrganizzazione" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceApplicazione" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceMacroArea" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceArea" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceFiliale" type="xs:string"/>
+      <xs:element minOccurs="0" name="codiceAgenzia" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generaUPMFResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:generaUPMFResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eseguiAccesso">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accessKey" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eseguiAccessoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:eseguiAccessoResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="encryptUP">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="userProfile" type="ns2:userProfile"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="encryptUPResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="calcolaCtx">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="ns2:userProfile"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:sessioneSSO"/>
+      <xs:element minOccurs="0" name="arg2" type="tns:accessoSSOv16"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="accessoSSOv16">
+    <xs:complexContent>
+      <xs:extension base="tns:accessoSSOv14">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="entryPoint" type="ns1:entryPoint"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="accessoSSOv14">
+    <xs:complexContent>
+      <xs:extension base="tns:accessoSSO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="scadenza" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="timeout" type="xs:int"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="calcolaCtxResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:caricaCtxResponsev16"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SsoException" type="tns:SsoException"/>
+  <xs:complexType name="SsoException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BloccoException" type="tns:BloccoException"/>
+  <xs:complexType name="BloccoException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UnauthorizedException" type="tns:UnauthorizedException"/>
+  <xs:complexType name="UnauthorizedException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SsoErrorException" type="tns:SsoErrorException"/>
+  <xs:complexType name="SsoErrorException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="usercode" type="xs:string"/>
+      <xs:element minOccurs="0" name="publicMessage" type="xs:string"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CalloutException" type="tns:CalloutException"/>
+  <xs:complexType name="CalloutException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForbiddenException" type="tns:ForbiddenException"/>
+  <xs:complexType name="ForbiddenException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Exception" type="tns:Exception"/>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IOException" type="tns:IOException"/>
+  <xs:complexType name="IOException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NamingException" type="tns:NamingException"/>
+  <xs:complexType name="NamingException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="explanation" type="xs:string"/>
+      <xs:element minOccurs="0" name="resolvedObj" type="xs:anyType"/>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClassNotFoundException" type="tns:ClassNotFoundException"/>
+  <xs:complexType name="ClassNotFoundException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InterruptedException" type="tns:InterruptedException"/>
+  <xs:complexType name="InterruptedException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvocationTargetException" type="tns:InvocationTargetException"/>
+  <xs:complexType name="InvocationTargetException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IllegalAccessException" type="tns:IllegalAccessException"/>
+  <xs:complexType name="IllegalAccessException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NoSuchMethodException" type="tns:NoSuchMethodException"/>
+  <xs:complexType name="NoSuchMethodException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="eseguiAccessoResponse">
+    <wsdl:part element="tns:eseguiAccessoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cambiaPasswordResponse">
+    <wsdl:part element="tns:cambiaPasswordResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ForbiddenException">
+    <wsdl:part element="tns:ForbiddenException" name="ForbiddenException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaUPB2BResponse">
+    <wsdl:part element="tns:generaUPB2BResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="caricaOrganizzazioneResponse">
+    <wsdl:part element="tns:caricaOrganizzazioneResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaUPB2B">
+    <wsdl:part element="tns:generaUPB2B" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validateUP">
+    <wsdl:part element="tns:validateUP" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NamingException">
+    <wsdl:part element="tns:NamingException" name="NamingException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ClassNotFoundException">
+    <wsdl:part element="tns:ClassNotFoundException" name="ClassNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="eseguiAccessov14Response">
+    <wsdl:part element="tns:eseguiAccessov14Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="caricaApplicazioniV1Response">
+    <wsdl:part element="tns:caricaApplicazioniV1Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaUPMF">
+    <wsdl:part element="tns:generaUPMF" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaAccessoV1Response">
+    <wsdl:part element="tns:creaAccessoV1Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cacheManager">
+    <wsdl:part element="tns:cacheManager" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="caricaCtxv16">
+    <wsdl:part element="tns:caricaCtxv16" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InterruptedException">
+    <wsdl:part element="tns:InterruptedException" name="InterruptedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaSessione5250">
+    <wsdl:part element="tns:creaSessione5250" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="caricaCtxv14">
+    <wsdl:part element="tns:caricaCtxv14" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="caricaCtxv14Response">
+    <wsdl:part element="tns:caricaCtxv14Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="chiudiMultiSessione">
+    <wsdl:part element="tns:chiudiMultiSessione" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="calcolaCtxResponse">
+    <wsdl:part element="tns:calcolaCtxResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validateUPResponse">
+    <wsdl:part element="tns:validateUPResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="encryptUP">
+    <wsdl:part element="tns:encryptUP" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="controllaValiditaSessione">
+    <wsdl:part element="tns:controllaValiditaSessione" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="decryptUP">
+    <wsdl:part element="tns:decryptUP" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="exeCallout">
+    <wsdl:part element="tns:exeCallout" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaSessioneFiltrataResponse">
+    <wsdl:part element="tns:creaSessioneFiltrataResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="calcolaCtx">
+    <wsdl:part element="tns:calcolaCtx" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BloccoException">
+    <wsdl:part element="tns:BloccoException" name="BloccoException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generaUPMFResponse">
+    <wsdl:part element="tns:generaUPMFResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnauthorizedException">
+    <wsdl:part element="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CalloutException">
+    <wsdl:part element="tns:CalloutException" name="CalloutException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="caricaApplicazioniV1">
+    <wsdl:part element="tns:caricaApplicazioniV1" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaAccesso">
+    <wsdl:part element="tns:creaAccesso" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cacheManagerResponse">
+    <wsdl:part element="tns:cacheManagerResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaSessione">
+    <wsdl:part element="tns:creaSessione" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="avviaSessione">
+    <wsdl:part element="tns:avviaSessione" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="caricaCtxResponse">
+    <wsdl:part element="tns:caricaCtxResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="chiudiSessioneResponse">
+    <wsdl:part element="tns:chiudiSessioneResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaSessioneResponse">
+    <wsdl:part element="tns:creaSessioneResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="eseguiAccessov14">
+    <wsdl:part element="tns:eseguiAccessov14" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaEntryPointResponse">
+    <wsdl:part element="tns:creaEntryPointResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="IllegalAccessException">
+    <wsdl:part element="tns:IllegalAccessException" name="IllegalAccessException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="controllaValiditaSessioneResponse">
+    <wsdl:part element="tns:controllaValiditaSessioneResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="eseguiAccesso">
+    <wsdl:part element="tns:eseguiAccesso" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SsoErrorException">
+    <wsdl:part element="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bootstrapResponse">
+    <wsdl:part element="tns:bootstrapResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="caricaOrganizzazione">
+    <wsdl:part element="tns:caricaOrganizzazione" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaSessione5250Response">
+    <wsdl:part element="tns:creaSessione5250Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isMultiSessioneResponse">
+    <wsdl:part element="tns:isMultiSessioneResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="avviaSessioneResponse">
+    <wsdl:part element="tns:avviaSessioneResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaEntryPoint">
+    <wsdl:part element="tns:creaEntryPoint" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaSessioneFiltrata">
+    <wsdl:part element="tns:creaSessioneFiltrata" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="exeCalloutResponse">
+    <wsdl:part element="tns:exeCalloutResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SsoException">
+    <wsdl:part element="tns:SsoException" name="SsoException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="caricaCtxv16Response">
+    <wsdl:part element="tns:caricaCtxv16Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaAccessoV1">
+    <wsdl:part element="tns:creaAccessoV1" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvocationTargetException">
+    <wsdl:part element="tns:InvocationTargetException" name="InvocationTargetException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="creaAccessoResponse">
+    <wsdl:part element="tns:creaAccessoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="decryptUPResponse">
+    <wsdl:part element="tns:decryptUPResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="chiudiSessione">
+    <wsdl:part element="tns:chiudiSessione" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part element="tns:Exception" name="Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isMultiSessione">
+    <wsdl:part element="tns:isMultiSessione" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="chiudiMultiSessioneResponse">
+    <wsdl:part element="tns:chiudiMultiSessioneResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cambiaPassword">
+    <wsdl:part element="tns:cambiaPassword" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="caricaCtx">
+    <wsdl:part element="tns:caricaCtx" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bootstrap">
+    <wsdl:part element="tns:bootstrap" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="encryptUPResponse">
+    <wsdl:part element="tns:encryptUPResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="IOException">
+    <wsdl:part element="tns:IOException" name="IOException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NoSuchMethodException">
+    <wsdl:part element="tns:NoSuchMethodException" name="NoSuchMethodException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SsoServices">
+    <wsdl:operation name="eseguiAccessov14">
+      <wsdl:input message="tns:eseguiAccessov14" name="eseguiAccessov14">
+    </wsdl:input>
+      <wsdl:output message="tns:eseguiAccessov14Response" name="eseguiAccessov14Response">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:BloccoException" name="BloccoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isMultiSessione">
+      <wsdl:input message="tns:isMultiSessione" name="isMultiSessione">
+    </wsdl:input>
+      <wsdl:output message="tns:isMultiSessioneResponse" name="isMultiSessioneResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="chiudiSessione">
+      <wsdl:input message="tns:chiudiSessione" name="chiudiSessione">
+    </wsdl:input>
+      <wsdl:output message="tns:chiudiSessioneResponse" name="chiudiSessioneResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CalloutException" name="CalloutException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaSessioneFiltrata">
+      <wsdl:input message="tns:creaSessioneFiltrata" name="creaSessioneFiltrata">
+    </wsdl:input>
+      <wsdl:output message="tns:creaSessioneFiltrataResponse" name="creaSessioneFiltrataResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaSessione5250">
+      <wsdl:input message="tns:creaSessione5250" name="creaSessione5250">
+    </wsdl:input>
+      <wsdl:output message="tns:creaSessione5250Response" name="creaSessione5250Response">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validateUP">
+      <wsdl:input message="tns:validateUP" name="validateUP">
+    </wsdl:input>
+      <wsdl:output message="tns:validateUPResponse" name="validateUPResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ForbiddenException" name="ForbiddenException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="caricaOrganizzazione">
+      <wsdl:input message="tns:caricaOrganizzazione" name="caricaOrganizzazione">
+    </wsdl:input>
+      <wsdl:output message="tns:caricaOrganizzazioneResponse" name="caricaOrganizzazioneResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaAccessoV1">
+      <wsdl:input message="tns:creaAccessoV1" name="creaAccessoV1">
+    </wsdl:input>
+      <wsdl:output message="tns:creaAccessoV1Response" name="creaAccessoV1Response">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="cacheManager">
+      <wsdl:input message="tns:cacheManager" name="cacheManager">
+    </wsdl:input>
+      <wsdl:output message="tns:cacheManagerResponse" name="cacheManagerResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="caricaCtxv16">
+      <wsdl:input message="tns:caricaCtxv16" name="caricaCtxv16">
+    </wsdl:input>
+      <wsdl:output message="tns:caricaCtxv16Response" name="caricaCtxv16Response">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="controllaValiditaSessione">
+      <wsdl:input message="tns:controllaValiditaSessione" name="controllaValiditaSessione">
+    </wsdl:input>
+      <wsdl:output message="tns:controllaValiditaSessioneResponse" name="controllaValiditaSessioneResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="avviaSessione">
+      <wsdl:input message="tns:avviaSessione" name="avviaSessione">
+    </wsdl:input>
+      <wsdl:output message="tns:avviaSessioneResponse" name="avviaSessioneResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NamingException" name="NamingException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ClassNotFoundException" name="ClassNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:IOException" name="IOException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="caricaCtxv14">
+      <wsdl:input message="tns:caricaCtxv14" name="caricaCtxv14">
+    </wsdl:input>
+      <wsdl:output message="tns:caricaCtxv14Response" name="caricaCtxv14Response">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaEntryPoint">
+      <wsdl:input message="tns:creaEntryPoint" name="creaEntryPoint">
+    </wsdl:input>
+      <wsdl:output message="tns:creaEntryPointResponse" name="creaEntryPointResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="chiudiMultiSessione">
+      <wsdl:input message="tns:chiudiMultiSessione" name="chiudiMultiSessione">
+    </wsdl:input>
+      <wsdl:output message="tns:chiudiMultiSessioneResponse" name="chiudiMultiSessioneResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CalloutException" name="CalloutException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaUPB2B">
+      <wsdl:input message="tns:generaUPB2B" name="generaUPB2B">
+    </wsdl:input>
+      <wsdl:output message="tns:generaUPB2BResponse" name="generaUPB2BResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exeCallout">
+      <wsdl:input message="tns:exeCallout" name="exeCallout">
+    </wsdl:input>
+      <wsdl:output message="tns:exeCalloutResponse" name="exeCalloutResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:IOException" name="IOException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CalloutException" name="CalloutException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaSessione">
+      <wsdl:input message="tns:creaSessione" name="creaSessione">
+    </wsdl:input>
+      <wsdl:output message="tns:creaSessioneResponse" name="creaSessioneResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="decryptUP">
+      <wsdl:input message="tns:decryptUP" name="decryptUP">
+    </wsdl:input>
+      <wsdl:output message="tns:decryptUPResponse" name="decryptUPResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="caricaApplicazioniV1">
+      <wsdl:input message="tns:caricaApplicazioniV1" name="caricaApplicazioniV1">
+    </wsdl:input>
+      <wsdl:output message="tns:caricaApplicazioniV1Response" name="caricaApplicazioniV1Response">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="cambiaPassword">
+      <wsdl:input message="tns:cambiaPassword" name="cambiaPassword">
+    </wsdl:input>
+      <wsdl:output message="tns:cambiaPasswordResponse" name="cambiaPasswordResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="bootstrap">
+      <wsdl:input message="tns:bootstrap" name="bootstrap">
+    </wsdl:input>
+      <wsdl:output message="tns:bootstrapResponse" name="bootstrapResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="caricaCtx">
+      <wsdl:input message="tns:caricaCtx" name="caricaCtx">
+    </wsdl:input>
+      <wsdl:output message="tns:caricaCtxResponse" name="caricaCtxResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaAccesso">
+      <wsdl:input message="tns:creaAccesso" name="creaAccesso">
+    </wsdl:input>
+      <wsdl:output message="tns:creaAccessoResponse" name="creaAccessoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaUPMF">
+      <wsdl:input message="tns:generaUPMF" name="generaUPMF">
+    </wsdl:input>
+      <wsdl:output message="tns:generaUPMFResponse" name="generaUPMFResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="eseguiAccesso">
+      <wsdl:input message="tns:eseguiAccesso" name="eseguiAccesso">
+    </wsdl:input>
+      <wsdl:output message="tns:eseguiAccessoResponse" name="eseguiAccessoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:BloccoException" name="BloccoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="encryptUP">
+      <wsdl:input message="tns:encryptUP" name="encryptUP">
+    </wsdl:input>
+      <wsdl:output message="tns:encryptUPResponse" name="encryptUPResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="calcolaCtx">
+      <wsdl:input message="tns:calcolaCtx" name="calcolaCtx">
+    </wsdl:input>
+      <wsdl:output message="tns:calcolaCtxResponse" name="calcolaCtxResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SsoException" name="SsoException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NamingException" name="NamingException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvocationTargetException" name="InvocationTargetException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ClassNotFoundException" name="ClassNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:IOException" name="IOException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:SsoErrorException" name="SsoErrorException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NoSuchMethodException" name="NoSuchMethodException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CalloutException" name="CalloutException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InterruptedException" name="InterruptedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:IllegalAccessException" name="IllegalAccessException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SsoServicesSoapBinding" type="tns:SsoServices">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="eseguiAccessov14">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="eseguiAccessov14">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="eseguiAccessov14Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="BloccoException">
+        <soap:fault name="BloccoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="chiudiSessione">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="chiudiSessione">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="chiudiSessioneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CalloutException">
+        <soap:fault name="CalloutException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isMultiSessione">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isMultiSessione">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isMultiSessioneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaSessioneFiltrata">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="creaSessioneFiltrata">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="creaSessioneFiltrataResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaSessione5250">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="creaSessione5250">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="creaSessione5250Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validateUP">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="validateUP">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validateUPResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ForbiddenException">
+        <soap:fault name="ForbiddenException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="caricaOrganizzazione">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="caricaOrganizzazione">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="caricaOrganizzazioneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="cacheManager">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="cacheManager">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="cacheManagerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaAccessoV1">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="creaAccessoV1">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="creaAccessoV1Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="caricaCtxv16">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="caricaCtxv16">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="caricaCtxv16Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="controllaValiditaSessione">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="controllaValiditaSessione">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="controllaValiditaSessioneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="avviaSessione">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="avviaSessione">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="avviaSessioneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NamingException">
+        <soap:fault name="NamingException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ClassNotFoundException">
+        <soap:fault name="ClassNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="IOException">
+        <soap:fault name="IOException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="caricaCtxv14">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="caricaCtxv14">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="caricaCtxv14Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaEntryPoint">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="creaEntryPoint">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="creaEntryPointResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="chiudiMultiSessione">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="chiudiMultiSessione">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="chiudiMultiSessioneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CalloutException">
+        <soap:fault name="CalloutException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaUPB2B">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="generaUPB2B">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaUPB2BResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exeCallout">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="exeCallout">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="exeCalloutResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="IOException">
+        <soap:fault name="IOException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CalloutException">
+        <soap:fault name="CalloutException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaSessione">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="creaSessione">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="creaSessioneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="caricaApplicazioniV1">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="caricaApplicazioniV1">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="caricaApplicazioniV1Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="decryptUP">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="decryptUP">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="decryptUPResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="cambiaPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="cambiaPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="cambiaPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="bootstrap">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="bootstrap">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="bootstrapResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="caricaCtx">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="caricaCtx">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="caricaCtxResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="creaAccesso">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="creaAccesso">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="creaAccessoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="generaUPMF">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="generaUPMF">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generaUPMFResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="eseguiAccesso">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="eseguiAccesso">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="eseguiAccessoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="BloccoException">
+        <soap:fault name="BloccoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="encryptUP">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="encryptUP">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="encryptUPResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="calcolaCtx">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="calcolaCtx">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="calcolaCtxResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SsoException">
+        <soap:fault name="SsoException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NamingException">
+        <soap:fault name="NamingException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvocationTargetException">
+        <soap:fault name="InvocationTargetException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ClassNotFoundException">
+        <soap:fault name="ClassNotFoundException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="IOException">
+        <soap:fault name="IOException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SsoErrorException">
+        <soap:fault name="SsoErrorException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NoSuchMethodException">
+        <soap:fault name="NoSuchMethodException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="CalloutException">
+        <soap:fault name="CalloutException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InterruptedException">
+        <soap:fault name="InterruptedException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="IllegalAccessException">
+        <soap:fault name="IllegalAccessException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SsoServices">
+    <wsdl:port binding="tns:SsoServicesSoapBinding" name="SsoServicesPort">
+      <soap:address location="http://xs.sviluppo.cabel.net/CBL-SSO-B2B/services/SsoServices"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
