@@ -6,6 +6,34 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
     
+    <name>${project.artifactId}</name>
+    
+    <description>
+        Download some .wsdl file form designed URL's 
+    </description>
+    
+    <url>>https://github.com/marcomilli/wget-wsdl-maven-plugin</url>
+    
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <name>Marco Milli</name>
+            <email>milli.marco@gmail.com</email>
+        </developer>
+    </developers>
+    
+    <scm>
+        <connection>scm:git:git://github.com/marcomilli/wget-wsdl-maven-plugin.git</connection>
+        <developerConnection>scm:git:ssh://github.com/marcomilli/wget-wsdl-maven-plugin.git</developerConnection>
+        <url>https://github.com/marcomilli/wget-wsdl-maven-plugin/tree/master</url>
+    </scm>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
